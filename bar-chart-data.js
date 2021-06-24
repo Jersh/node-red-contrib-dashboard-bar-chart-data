@@ -97,6 +97,8 @@ function barChartData(msg,myNode, store) {
 	var data = store.get(msg.topic + '_data')||{};
 	var dataCounter = store.get(msg.topic + '_data_counter')||{};
 	var reading = Number(msg.payload);
+
+
   var ts = msg.ts || msg.timestamp || (+ new Date());
   if (ts <= 9999999999) { ts *= 1000 }  //sec ts to millis ts, only works until 2286-11-20 :(
 	var curDate = new Date(ts);
@@ -136,6 +138,10 @@ function barChartData(msg,myNode, store) {
 	}
 	else if(myNode.agg_by == "max") {
 		newVal = Math.max(oldVal, reading);
+	}
+	// No agregation required, should just return last value
+	else if(myNode.agg_by == "None") {
+		newVal = reading;
 	}
 	else if(myNode.agg_by == "avg") {
 		//in this case, we store the number of readings in "data_counter" json and use it to calc the avg
@@ -193,11 +199,11 @@ function barChartData(msg,myNode, store) {
 	//put all "_last" values into msg (for restoring)
 	addLastValues(store,msg);
 
-	//add min,max,sum
+	//add min,max,sum,
 	msg.data_min = Math.min(...dataAll);
 	msg.data_max = Math.max(...dataAll);
 	const arrSum = arr => arr.reduce((a,b) => a + b, 0);
-	msg.data_sum = Math.round(arrSum(dataAll)*precision)/precision;  
+	msg.data_sum = Math.round(arrSum(dataAll)*precision)/precision;
 
 	//put all settings into msg (could be used for dynamic chart titles etc.)
 	msg.settings = {unit: myNode.unit,
