@@ -1,7 +1,7 @@
 # node-red-contrib-dashboard-bar-chart-data
 
 <h2>Bar-chart-data</h2>
-<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4GDDLTAZKJH54&source=url"><img src="https://img.shields.io/badge/Donate-PayPal-blue.svg?style=flat-square" alt="Donate via PayPal"></a></p>
+<p>Donation Link to orginal author:<br><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4GDDLTAZKJH54&source=url"><img src="https://img.shields.io/badge/Donate-PayPal-blue.svg?style=flat-square" alt="Donate via PayPal"></a></p>
 <p>This node transforms <code>msg.payload</code>, attaches (and stores) past values and build a message that could be linked to the <code>ui_chart</code> node configured as "bar chart". 
   It can handle measurements (e.g. current power consumption) or meter readings (e.g. gas/water/energy meter count) and calculate the sum, min, max or average in a customizable time range. 
   Works with multiple topics, too.</p>
@@ -79,13 +79,14 @@
     </dd>  
   </dl>
  
-  <h3>Additional output: Sum, Min, Max, Settings</h3>
+  <h3>Additional output: Sum, Min, Max,None Settings</h3>
   <dl>
     <dd>This is included in the output message (and could be used to set chart title etc.):
       <li>The node settings (unit, x_interval, x_size, precision, is_meter_reading, agg_by) as json in <code>msg.settings</code></li>
       <li>The smallest value of all bars (min) in <code>msg.min</code></li>
       <li>The largest value of all bars (max) in <code>msg.max</code></li>
       <li>The sum of all bars in <code>msg.sum</code></li>
+      <li>The last message recieved in the time period only <code>msg.none</code></li>
     </dd>  
   </dl>
 
