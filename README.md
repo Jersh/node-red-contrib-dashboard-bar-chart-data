@@ -7,8 +7,7 @@
 
 <h3> Properties :</h3>
   <dl class="message-properties">
-    <dt>Name
-      <dd>The name of this node</dd>
+    <dt>This is a Fork of the orginal project which can be found here: **https://github.com/arneman/node-red-contrib-dashboard-bar-chart-data**
     </dt>
 
 <dt>x-interval
